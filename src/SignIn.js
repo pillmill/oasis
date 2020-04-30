@@ -25,6 +25,7 @@ function Copyright() {
       {'.'}
     </Typography>
   );
+  
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -56,10 +57,23 @@ const useStyles = makeStyles((theme) => ({
     height: '490px'
   }
 }));
+
+
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
+const url = 'http://13.57.220.143/login?email=aa&password=bb'
+fetch(proxyurl + url).then((resp) => resp.json())
+  .then(function(data) {
+    console.log(data);
+  })
+  .catch(function(error) {
+    console.log(error);
+  });  
+  
+  
 const data = { email: 'aa', password:"bb" };
 export default function SignIn() {
   const classes = useStyles();
-  fetch('http://13.57.220.143/login', {
+  /*fetch('http://13.57.220.143/login', {
     method: 'POST', // or 'PUT'
     headers: {
       'Content-Type': 'application/json',
@@ -67,6 +81,7 @@ export default function SignIn() {
     },
     // mode:'no-cors',
     body: JSON.stringify(data),
+	
   })
   .then((response) => response.json())
   .then((data) => {
@@ -74,9 +89,19 @@ export default function SignIn() {
   })
   .catch((error) => {
     console.error('Error:', error);
-  });
+  });*/
+  
+  
+  fetch(proxyurl + url).then((resp) => resp.json())
+  .then(function(data) {
+    console.log(data);
+  })
+  .catch(function(error) {
+    console.log(error);
+  }); 
 
   return (
+
     <Container className={classes.container} component="main" >
       <CssBaseline />
       <div className={classes.paper}>
@@ -84,7 +109,7 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign in1
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
